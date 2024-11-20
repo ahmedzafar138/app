@@ -116,10 +116,25 @@ const App = () => {
           <View style={styles.page}>
             <Text style={styles.pageTitle}>Deals</Text>
 
-            <FlatList
-            data = {Deals}
-            renderItem={({item}) => 
-            {
+            <View style={styles.foodItems}>
+              <TouchableOpacity onPress={() => console.warn("Meal1 added")}>
+                <View style={styles.foodCard}>
+                  <View style={styles.foodImage}>
+                    <Image
+                      resizeMode="cover"
+                      style={styles.image}
+                      source={require("./img/meal1.jpg")}
+                    ></Image>
+                  </View>
+                  <View style={styles.foodNameView}>
+                    <Text style={styles.foodName}>Deal 1</Text>
+                  </View>
+                  <View style={styles.foodPriceView}>
+                    <Text style={styles.foodPrice}>Rs 999</Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+
               <TouchableOpacity
                 onPress={() => {
                   console.warn("Meal2 added");
@@ -134,16 +149,15 @@ const App = () => {
                     ></Image>
                   </View>
                   <View style={styles.foodNameView}>
-                    <Text style={styles.foodName}>{item.name}</Text>
+                    <Text style={styles.foodName}>Deal 2</Text>
                   </View>
                   <View style={styles.foodPriceView}>
-                    <Text style={styles.foodPrice}>{item.price}</Text>
+                    <Text style={styles.foodPrice}>Rs 1,899</Text>
                   </View>
                 </View>
               </TouchableOpacity>
-            }}
-
-            />
+              {/* Add more content here */}
+            </View>
             
           </View>
         </ScrollView>
