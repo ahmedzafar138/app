@@ -1,3 +1,4 @@
+import React, { useState, useRef } from "react";
 import {
   View,
   Text,
@@ -9,26 +10,24 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
-  Pressable,
 } from "react-native";
-import React, { useState, useRef } from "react";
 
 const { width } = Dimensions.get("window");
 
-const App = () => {
-  const Deals = [
-    {
-      name: "Deal1",
-      detail: "Burger, small fries, Chicken piece, 330 ml Drink",
-      price: 999,
-    },
-    {
-      name: "Deal2",
-      detail: "",
-      prie: 1999,
-    },
-  ];
+const Deals = [
+  {
+    name: "Deal1",
+    detail: "Burger, small fries, Chicken piece, 330 ml Drink",
+    price: 999,
+  },
+  {
+    name: "Deal2",
+    detail: "",
+    price: 1999,
+  },
+];
 
+const App = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Deals");
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -45,13 +44,13 @@ const App = () => {
   };
 
   return (
-    //top view
-    <View>
-      <Image
-        style={styles.topImage}
-        source={require("./img/burger.jpg")}
-      ></Image>
+    <View style={{ flex: 1 }}>
+      <ScrollView>
 
+      {/* Top Image */}
+      <Image style={styles.topImage} source={require("./img/burger.jpg")} />
+
+      {/* Top Bar */}
       <View style={styles.topBar}>
         <View style={styles.topBarIn}>
           <View style={styles.topBarParts}>
@@ -69,6 +68,7 @@ const App = () => {
         </View>
       </View>
 
+      {/* Info Section */}
       <View style={styles.infoContainer}>
         <Text style={styles.branch}>Juicy Chuck - Gulberg</Text>
         <View style={styles.info}>
@@ -77,9 +77,7 @@ const App = () => {
           </Text>
           <Text style={{ color: "white", margin: 5 }}>📞 03201472839</Text>
           <Text style={{ color: "white", margin: 5 }}>⏱ Closed</Text>
-          <Text style={{ color: "white", margin: 5 }}>
-            💵 Min Order : Rs. 400
-          </Text>
+          <Text style={{ color: "white", margin: 5 }}>💵 Min Order : Rs. 400</Text>
         </View>
       </View>
 
@@ -110,72 +108,57 @@ const App = () => {
         pagingEnabled
         onScroll={handleScroll}
         scrollEventThrottle={16}
+        nestedScrollEnabled = {true}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1 }}
       >
-        <ScrollView>
-          <View style={styles.page}>
-            <Text style={styles.pageTitle}>Deals</Text>
 
-            <View style={styles.foodItems}>
-              <TouchableOpacity onPress={() => console.warn("Meal1 added")}>
-                <View style={styles.foodCard}>
-                  <View style={styles.foodImage}>
-                    <Image
-                      resizeMode="cover"
-                      style={styles.image}
-                      source={require("./img/meal1.jpg")}
-                    ></Image>
+        {/* Deals Tab */}
+        <View style={styles.page}>
+          <Text style={styles.pageTitle}>Deals</Text>
+          <FlatList
+            data={Deals}
+            renderItem={({ item }) => (
+              <View style={styles.foodItems}>
+                <TouchableOpacity onPress={() => console.warn("Meal added")}>
+                  <View style={styles.foodCard}>
+                    <View style={styles.foodImage}>
+                      <Image
+                        resizeMode="cover"
+                        style={styles.image}
+                        source={require("./img/meal1.jpg")}
+                      />
+                    </View>
+                    <View style={styles.foodNameView}>
+                      <Text style={styles.foodName}>{item.name}</Text>
+                    </View>
+                    <View style={styles.foodPriceView}>
+                      <Text style={styles.foodPrice}>{item.price}</Text>
+                    </View>
                   </View>
-                  <View style={styles.foodNameView}>
-                    <Text style={styles.foodName}>Deal 1</Text>
-                  </View>
-                  <View style={styles.foodPriceView}>
-                    <Text style={styles.foodPrice}>Rs 999</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
+                </TouchableOpacity>
+              </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        </View>
 
-              <TouchableOpacity
-                onPress={() => {
-                  console.warn("Meal2 added");
-                }}
-              >
-                <View style={styles.foodCard}>
-                  <View style={styles.foodImage}>
-                    <Image
-                      resizeMode="cover"
-                      style={styles.image}
-                      source={require("./img/meal2.jpg")}
-                    ></Image>
-                  </View>
-                  <View style={styles.foodNameView}>
-                    <Text style={styles.foodName}>Deal 2</Text>
-                  </View>
-                  <View style={styles.foodPriceView}>
-                    <Text style={styles.foodPrice}>Rs 1,899</Text>
-                  </View>
-                </View>
-              </TouchableOpacity>
-              {/* Add more content here */}
-            </View>
-            
-          </View>
-        </ScrollView>
-
+        {/* Appetizers Tab */}
         <View style={styles.page}>
           <Text style={styles.pageTitle}>Appetizers</Text>
           <View style={styles.foodItems}>
             <Text>Appetizer 1 - Rs 200</Text>
             <Text>Appetizer 2 - Rs 300</Text>
           </View>
-          {/* Add more content here */}
         </View>
+
+        {/* Meals Tab */}
         <View style={styles.page}>
           <Text style={styles.pageTitle}>Meals</Text>
           <Text>Meal 1 - Rs 500</Text>
           <Text>Meal 2 - Rs 800</Text>
-          {/* Add more content here */}
         </View>
+      </ScrollView>
       </ScrollView>
     </View>
   );
@@ -187,7 +170,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   topImage: {
-    width: 360,
+    width: "100%",
     height: 200,
   },
   topBarIn: {
@@ -203,28 +186,20 @@ const styles = StyleSheet.create({
     marginRight: 1,
   },
   infoContainer: {
-    height: 180,
     backgroundColor: "red",
+    padding: 15,
   },
   branch: {
     fontSize: 20,
     color: "white",
-    marginTop: 20,
-    marginBottom: 15,
-    marginLeft: 15,
     fontWeight: "bold",
   },
   info: {
     paddingLeft: 15,
   },
-  container: {
-    backgroundColor: "#f5f5f5",
-    paddingVertical: 10,
-  },
   page: {
     width,
     padding: 20,
-    // backgroundColor: "orange",
   },
   pageTitle: {
     fontSize: 24,
@@ -251,12 +226,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2.5,
   },
   foodCard: {
+    flex : 1,
     height: 200,
     width: 150,
     borderColor: "black",
     borderWidth: 1,
     borderRadius: 20,
-    // padding: 10,
     margin: 6,
   },
   foodImage: {
@@ -268,13 +243,17 @@ const styles = StyleSheet.create({
   },
   foodNameView: {
     flex: 1,
+    paddingLeft: 10,
   },
   foodPriceView: {
     flex: 1,
+    paddingLeft: 10,
   },
   foodItems: {
+    flex : 1,
     flexDirection: "row",
     flexWrap: "wrap",
+    backgroundColor : 'red'
   },
   foodName: {
     marginLeft: 10,
