@@ -25,6 +25,21 @@ const Deals = [
     detail: "",
     price: 1999,
   },
+  {
+    name: "Deal3",
+    detail: "",
+    price: 1599,
+  },
+  {
+    name: "Deal4",
+    detail: "",
+    price: 2599,
+  },
+  {
+    name: "Deal5",
+    detail: "",
+    price: 2599,
+  },
 ];
 
 const App = () => {
@@ -46,119 +61,165 @@ const App = () => {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView>
+        {/* Top Image */}
+        <Image style={styles.topImage} source={require("./img/burger.jpg")} />
 
-      {/* Top Image */}
-      <Image style={styles.topImage} source={require("./img/burger.jpg")} />
-
-      {/* Top Bar */}
-      <View style={styles.topBar}>
-        <View style={styles.topBarIn}>
-          <View style={styles.topBarParts}>
-            <Text>Outlet</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Johar Town</Text>
-          </View>
-          <View style={styles.topBarParts}>
-            <Text>Order For</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Delivery</Text>
-          </View>
-          <View style={[styles.topBarParts, { borderRightColor: "white" }]}>
-            <Text>Serving Time</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Closed</Text>
+        {/* Top Bar */}
+        <View style={styles.topBar}>
+          <View style={styles.topBarIn}>
+            <View style={styles.topBarParts}>
+              <Text>Outlet</Text>
+              <Text style={{ fontWeight: "bold", color: "red" }}>
+                Johar Town
+              </Text>
+            </View>
+            <View style={styles.topBarParts}>
+              <Text>Order For</Text>
+              <Text style={{ fontWeight: "bold", color: "red" }}>Delivery</Text>
+            </View>
+            <View style={[styles.topBarParts, { borderRightColor: "white" }]}>
+              <Text>Serving Time</Text>
+              <Text style={{ fontWeight: "bold", color: "red" }}>Closed</Text>
+            </View>
           </View>
         </View>
-      </View>
 
-      {/* Info Section */}
-      <View style={styles.infoContainer}>
-        <Text style={styles.branch}>Juicy Chuck - Gulberg</Text>
-        <View style={styles.info}>
-          <Text style={{ color: "white", margin: 5 }}>
-            6c/3 opposite Shoppe, Gulberg III, Lahore
-          </Text>
-          <Text style={{ color: "white", margin: 5 }}>📞 03201472839</Text>
-          <Text style={{ color: "white", margin: 5 }}>⏱ Closed</Text>
-          <Text style={{ color: "white", margin: 5 }}>💵 Min Order : Rs. 400</Text>
-        </View>
-      </View>
-
-      {/* Tab Navigation */}
-      <View style={styles.tabContainer}>
-        {tabs.map((tab, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => handleTabPress(tab, index)}
-            style={styles.tab}
-          >
-            <Text
-              style={[
-                styles.tabText,
-                selectedTab === tab && styles.selectedTabText,
-              ]}
-            >
-              {tab}
+        {/* Info Section */}
+        <View style={styles.infoContainer}>
+          <Text style={styles.branch}>Juicy Chuck - Gulberg</Text>
+          <View style={styles.info}>
+            <Text style={{ color: "white", margin: 5 }}>
+              6c/3 opposite Shoppe, Gulberg III, Lahore
             </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-
-      {/* Scrollable Content */}
-      <ScrollView
-        ref={scrollViewRef}
-        horizontal
-        pagingEnabled
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        nestedScrollEnabled = {true}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ flexGrow: 1 }}
-      >
-
-        {/* Deals Tab */}
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Deals</Text>
-          <FlatList
-            data={Deals}
-            renderItem={({ item }) => (
-              <View style={styles.foodItems}>
-                <TouchableOpacity onPress={() => console.warn("Meal added")}>
-                  <View style={styles.foodCard}>
-                    <View style={styles.foodImage}>
-                      <Image
-                        resizeMode="cover"
-                        style={styles.image}
-                        source={require("./img/meal1.jpg")}
-                      />
-                    </View>
-                    <View style={styles.foodNameView}>
-                      <Text style={styles.foodName}>{item.name}</Text>
-                    </View>
-                    <View style={styles.foodPriceView}>
-                      <Text style={styles.foodPrice}>{item.price}</Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
-
-        {/* Appetizers Tab */}
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Appetizers</Text>
-          <View style={styles.foodItems}>
-            <Text>Appetizer 1 - Rs 200</Text>
-            <Text>Appetizer 2 - Rs 300</Text>
+            <Text style={{ color: "white", margin: 5 }}>📞 03201472839</Text>
+            <Text style={{ color: "white", margin: 5 }}>⏱ Closed</Text>
+            <Text style={{ color: "white", margin: 5 }}>
+              💵 Min Order : Rs. 400
+            </Text>
           </View>
         </View>
 
-        {/* Meals Tab */}
-        <View style={styles.page}>
-          <Text style={styles.pageTitle}>Meals</Text>
-          <Text>Meal 1 - Rs 500</Text>
-          <Text>Meal 2 - Rs 800</Text>
+        {/* Tab Navigation */}
+        <View style={styles.tabContainer}>
+          {tabs.map((tab, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => handleTabPress(tab, index)}
+              style={styles.tab}
+            >
+              <Text
+                style={[
+                  styles.tabText,
+                  selectedTab === tab && styles.selectedTabText,
+                ]}
+              >
+                {tab}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
-      </ScrollView>
+
+        {/* Scrollable Content */}
+        <ScrollView
+          ref={scrollViewRef}
+          horizontal
+          pagingEnabled
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+          nestedScrollEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ flexGrow: 1 }}
+        >
+          {/* Deals Tab */}
+          <View style={styles.page}>
+            <Text style={styles.pageTitle}>Deals</Text>
+            <FlatList
+              data={Deals}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <View style={styles.foodItems}>
+                  <TouchableOpacity onPress={() => console.log("Meal added")}>
+                    <View style={styles.foodCard}>
+                      <View style={styles.foodImage}>
+                        <Image
+                          resizeMode="cover"
+                          style={styles.image}
+                          source={require("./img/meal1.jpg")}
+                        />
+                      </View>
+                      <View style={styles.foodNameView}>
+                        <Text style={styles.foodName}>{item.name}</Text>
+                      </View>
+                      <View style={styles.foodPriceView}>
+                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          </View>
+
+          {/* Appetizers Tab */}
+          <View style={styles.page}>
+            <Text style={styles.pageTitle}>Appetizers</Text>
+            <FlatList
+              data={Deals}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <View style={styles.foodItems}>
+                  <TouchableOpacity onPress={() => console.log("Meal added")}>
+                    <View style={styles.foodCard}>
+                      <View style={styles.foodImage}>
+                        <Image
+                          resizeMode="cover"
+                          style={styles.image}
+                          source={require("./img/meal1.jpg")}
+                        />
+                      </View>
+                      <View style={styles.foodNameView}>
+                        <Text style={styles.foodName}>{item.name}</Text>
+                      </View>
+                      <View style={styles.foodPriceView}>
+                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          </View>
+
+          {/* Meals Tab */}
+          <View style={styles.page}>
+            <Text style={styles.pageTitle}>Meals</Text>
+            <FlatList
+              data={Deals}
+              numColumns={2}
+              renderItem={({ item }) => (
+                <View style={styles.foodItems}>
+                  <TouchableOpacity onPress={() => console.log("Meal added")}>
+                    <View style={styles.foodCard}>
+                      <View style={styles.foodImage}>
+                        <Image
+                          resizeMode="cover"
+                          style={styles.image}
+                          source={require("./img/meal1.jpg")}
+                        />
+                      </View>
+                      <View style={styles.foodNameView}>
+                        <Text style={styles.foodName}>{item.name}</Text>
+                      </View>
+                      <View style={styles.foodPriceView}>
+                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
+                      </View>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          </View>
+        </ScrollView>
       </ScrollView>
     </View>
   );
@@ -205,6 +266,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
+    marginLeft : 10
   },
   tabContainer: {
     flexDirection: "row",
@@ -226,17 +288,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2.5,
   },
   foodCard: {
-    flex : 1,
     height: 200,
     width: 150,
     borderColor: "black",
     borderWidth: 1,
     borderRadius: 20,
-    margin: 6,
+    margin: 15,
   },
   foodImage: {
     flex: 5,
-    backgroundColor: "orange",
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
     overflow: "hidden",
@@ -250,10 +310,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   foodItems: {
-    flex : 1,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    backgroundColor : 'red'
+    flex: 1,
   },
   foodName: {
     marginLeft: 10,
