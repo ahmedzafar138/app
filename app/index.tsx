@@ -9,43 +9,129 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  FlatList,
 } from "react-native";
-import Topbar from "./mainmenu/Top";
 import Info from "./mainmenu/Info";
+import Topbar from "./mainmenu/Top";
+import Foodcard from "./mainmenu/Foodcard";
 
 const { width } = Dimensions.get("window");
 
+type Food = {
+  name: string;
+  detail: string;
+  price: number;
+};
+
 const Foods = {
-  Deals : [
-    {name : "Deal 1",detail : "Burger, small fries, Chicken piece, 330ml Drink",price : 999},
-    {name : "Deal 2",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 3",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 4",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 5",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999}
+  Deals: [
+    {
+      name: "Deal 1",
+      detail: "Burger, small fries, Chicken piece, 330ml Drink",
+      price: 999,
+    },
+    {
+      name: "Deal 2",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 3",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 4",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 5",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
   ],
-  Appetizers : [
-    {name : "Deal 1",detail : "Burger, small fries, Chicken piece, 330ml Drink",price : 999},
-    {name : "Deal 2",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 3",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 4",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 5",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999}
+  Appetizers: [
+    {
+      name: "Deal 1",
+      detail: "Burger, small fries, Chicken piece, 330ml Drink",
+      price: 999,
+    },
+    {
+      name: "Deal 2",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 3",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 4",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 5",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
   ],
-  Sweet : [
-    {name : "Deal 1", detail : "Burger, small fries, Chicken piece, 330ml Drink",price : 999},
-    {name : "Deal 2",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 3",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 4",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 5",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999}
+  Sweet: [
+    {
+      name: "Deal 1",
+      detail: "Burger, small fries, Chicken piece, 330ml Drink",
+      price: 999,
+    },
+    {
+      name: "Deal 2",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 3",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 4",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 5",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
   ],
-  Meals : [
-    {name : "Deal 1", detail : "Burger, small fries, Chicken piece, 330ml Drink",price : 999},
-    {name : "Deal 2",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 3",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 4",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999},
-    {name : "Deal 5",detail : "Burger, Small fries, Chicken Piece, 330ml Drink",price : 1999}
-  ]
-}
+  Meals: [
+    {
+      name: "Deal 1",
+      detail: "Burger, small fries, Chicken piece, 330ml Drink",
+      price: 999,
+    },
+    {
+      name: "Deal 2",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 3",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 4",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+    {
+      name: "Deal 5",
+      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
+      price: 1999,
+    },
+  ],
+};
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState<string>("Deals");
@@ -70,14 +156,10 @@ const App = () => {
         <Image style={styles.topImage} source={require("./img/burger.jpg")} />
 
         {/* Top Bar */}
-        <View>
-          <Topbar/>
-        </View>
+        <Topbar />
 
         {/* Info Section */}
-        <View>
-          <Info/>
-        </View>
+        <Info />
 
         {/* Tab Navigation */}
         <View style={styles.tabContainer}>
@@ -113,91 +195,25 @@ const App = () => {
           {/* Deals Tab */}
           <View style={styles.page}>
             <Text style={styles.pageTitle}>Deals</Text>
-            <FlatList
-              data={Foods.Deals}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <View style={styles.foodItems}>
-                  <TouchableOpacity onPress={() => console.log("Meal added")}>
-                    <View style={styles.foodCard}>
-                      <View style={styles.foodImage}>
-                        <Image
-                          resizeMode="cover"
-                          style={styles.image}
-                          source={require("./img/meal1.jpg")}
-                        />
-                      </View>
-                      <View style={styles.foodNameView}>
-                        <Text style={styles.foodName}>{item.name}</Text>
-                      </View>
-                      <View style={styles.foodPriceView}>
-                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              )}
-            />
+            <Foodcard foods={Foods.Deals} />
           </View>
 
           {/* Appetizers Tab */}
           <View style={styles.page}>
             <Text style={styles.pageTitle}>Appetizers</Text>
-            <FlatList
-              data={Foods.Appetizers}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <View style={styles.foodItems}>
-                  <TouchableOpacity onPress={() => console.log("Meal added")}>
-                    <View style={styles.foodCard}>
-                      <View style={styles.foodImage}>
-                        <Image
-                          resizeMode="cover"
-                          style={styles.image}
-                          source={require("./img/meal1.jpg")}
-                        />
-                      </View>
-                      <View style={styles.foodNameView}>
-                        <Text style={styles.foodName}>{item.name}</Text>
-                      </View>
-                      <View style={styles.foodPriceView}>
-                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              )}
-            />
+            <Foodcard foods={Foods.Appetizers} />
+          </View>
+
+          {/* Sweet Tab */}
+          <View style={styles.page}>
+            <Text style={styles.pageTitle}>Sweets</Text>
+            <Foodcard foods={Foods.Sweet} />
           </View>
 
           {/* Meals Tab */}
           <View style={styles.page}>
             <Text style={styles.pageTitle}>Meals</Text>
-            <FlatList
-              data={Foods.Sweet}
-              numColumns={2}
-              renderItem={({ item }) => (
-                <View style={styles.foodItems}>
-                  <TouchableOpacity onPress={() => console.log("Meal added")}>
-                    <View style={styles.foodCard}>
-                      <View style={styles.foodImage}>
-                        <Image
-                          resizeMode="cover"
-                          style={styles.image}
-                          source={require("./img/meal1.jpg")}
-                        />
-                      </View>
-                      <View style={styles.foodNameView}>
-                        <Text style={styles.foodName}>{item.name}</Text>
-                      </View>
-                      <View style={styles.foodPriceView}>
-                        <Text style={styles.foodPrice}>Rs. {item.price}</Text>
-                      </View>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              )}
-            />
+            <Foodcard foods={Foods.Meals} />
           </View>
         </ScrollView>
       </ScrollView>
@@ -218,7 +234,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
-    marginLeft : 10
+    marginLeft: 10,
   },
   tabContainer: {
     flexDirection: "row",
@@ -238,48 +254,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     borderBottomColor: "red",
     borderBottomWidth: 2.5,
-  },
-  foodCard: {
-    height: 200,
-    width: 150,
-    borderRadius: 20,
-    margin: 15,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  foodImage: {
-    flex: 5,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
-    overflow: "hidden",
-  },
-  foodNameView: {
-    flex: 1,
-    paddingLeft: 10,
-  },
-  foodPriceView: {
-    flex: 1,
-    paddingLeft: 10,
-  },
-  foodItems: {
-    flex: 1,
-  },
-  foodName: {
-    marginLeft: 10,
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  foodPrice: {
-    marginLeft: 10,
-    fontSize: 15,
-  },
-  image: {
-    height: "100%",
-    width: "100%",
   },
 });
 
