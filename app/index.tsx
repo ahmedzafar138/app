@@ -16,120 +16,34 @@ import Foodcard from "./mainmenu/Foodcard";
 
 const { width } = Dimensions.get("window");
 
-type Food = {
-  name: string;
-  detail: string;
-  price: number;
-};
-
 const Foods = {
   Deals: [
-    {
-      name: "Deal 1",
-      detail: "Burger, small fries, Chicken piece, 330ml Drink",
-      price: 999,
-    },
-    {
-      name: "Deal 2",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 3",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 4",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 5",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
+    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
+    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
   ],
   Appetizers: [
-    {
-      name: "Deal 1",
-      detail: "Burger, small fries, Chicken piece, 330ml Drink",
-      price: 999,
-    },
-    {
-      name: "Deal 2",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 3",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 4",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 5",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
+    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
+    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
   ],
   Sweet: [
-    {
-      name: "Deal 1",
-      detail: "Burger, small fries, Chicken piece, 330ml Drink",
-      price: 999,
-    },
-    {
-      name: "Deal 2",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 3",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 4",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 5",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
+    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
+    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
   ],
   Meals: [
-    {
-      name: "Deal 1",
-      detail: "Burger, small fries, Chicken piece, 330ml Drink",
-      price: 999,
-    },
-    {
-      name: "Deal 2",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 3",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 4",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
-    {
-      name: "Deal 5",
-      detail: "Burger, Small fries, Chicken Piece, 330ml Drink",
-      price: 1999,
-    },
+    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
+    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
+    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
   ],
 };
 
@@ -192,29 +106,12 @@ const App = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ flexGrow: 1 }}
         >
-          {/* Deals Tab */}
-          <View style={styles.page}>
-            <Text style={styles.pageTitle}>Deals</Text>
-            <Foodcard foods={Foods.Deals} />
-          </View>
-
-          {/* Appetizers Tab */}
-          <View style={styles.page}>
-            <Text style={styles.pageTitle}>Appetizers</Text>
-            <Foodcard foods={Foods.Appetizers} />
-          </View>
-
-          {/* Sweet Tab */}
-          <View style={styles.page}>
-            <Text style={styles.pageTitle}>Sweets</Text>
-            <Foodcard foods={Foods.Sweet} />
-          </View>
-
-          {/* Meals Tab */}
-          <View style={styles.page}>
-            <Text style={styles.pageTitle}>Meals</Text>
-            <Foodcard foods={Foods.Meals} />
-          </View>
+          {tabs.map((tab, index) => (
+            <View style={styles.page} key={index}>
+              <Text style={styles.pageTitle}>{tab}</Text>
+              <Foodcard foods={Foods[tab as keyof typeof Foods]} />
+            </View>
+          ))}
         </ScrollView>
       </ScrollView>
     </View>
@@ -251,7 +148,7 @@ const styles = StyleSheet.create({
   },
   selectedTabText: {
     color: "#d32f2f",
-    fontWeight: "bold",
+    fontWeight: "900",
     borderBottomColor: "red",
     borderBottomWidth: 2.5,
   },
