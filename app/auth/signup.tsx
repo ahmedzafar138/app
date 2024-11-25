@@ -70,7 +70,7 @@ const Signup = ({ navigation }: { navigation: any }) => {
     <View style={styles.container}>
       {/* Round Image */}
       <Image
-        source={require("./img/logo.jpg")}
+        source={require("../img/logo.jpg")}
         style={styles.profileImage}
       />
 

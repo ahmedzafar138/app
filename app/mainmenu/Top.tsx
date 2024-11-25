@@ -1,25 +1,34 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
+import { router } from "expo-router";
 
-const Topbar = () => {
+type branch ={
+  branchName : string;
+  orderType : string;
+}
+
+const Topbar = (props:branch) => {
   return (
     <View>
+      <Pressable
+      onPress={() => router.replace('./branches')}>
       <View style={styles.topBar}>
         <View style={styles.topBarIn}>
           <View style={styles.topBarParts}>
             <Text>Outlet</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Johar Town</Text>
+            <Text style={{ fontWeight: "bold", color: "red" }}>{props.branchName}</Text>
           </View>
           <View style={styles.topBarParts}>
             <Text>Order For</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Delivery</Text>
+            <Text style={{ fontWeight: "bold", color: "red" }}>{props.orderType}</Text>
           </View>
           <View style={[styles.topBarParts, { borderRightColor: "white" }]}>
             <Text>Serving Time</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Closed</Text>
+            <Text style={{ fontWeight: "bold", color: "red" }}>Open</Text>
           </View>
         </View>
       </View>
+      </Pressable>
     </View>
   );
 };

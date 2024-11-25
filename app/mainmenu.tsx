@@ -13,6 +13,7 @@ import {
 import Info from "./mainmenu/Info";
 import Topbar from "./mainmenu/Top";
 import Foodcard from "./mainmenu/Foodcard";
+import { useLocalSearchParams } from "expo-router";
 
 const { width } = Dimensions.get("window");
 
@@ -48,6 +49,8 @@ const Foods = {
 };
 
 const App = () => {
+
+  const {branchName, branchAddress, branchPhoneNo, orderType} = useLocalSearchParams<{branchName : string, branchAddress : string, branchPhoneNo : string, orderType : string}>();
   const [selectedTab, setSelectedTab] = useState<string>("Deals");
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -70,10 +73,10 @@ const App = () => {
         <Image style={styles.topImage} source={require("./img/burger.jpg")} />
 
         {/* Top Bar */}
-        <Topbar />
+        <Topbar branchName = {branchName} orderType = {orderType}/>
 
         {/* Info Section */}
-        <Info />
+        <Info branchName = {branchName} branchAddress = {branchAddress} branchPhoneNo = {branchPhoneNo}/>
 
         {/* Tab Navigation */}
         <View style={styles.tabContainer}>

@@ -1,3 +1,4 @@
+import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
   View,
@@ -8,21 +9,20 @@ import {
   Image,
 } from 'react-native';
 
-const App = () => {
+const Branches = () => {
   const [selectedOption, setSelectedOption] = useState<'Delivery' | 'Pickup' | 'Curbside'>('Delivery');
   const [selectedBranch, setSelectedBranch] = useState<string | null>(null);
-  const [savedBranchDetails, setSavedBranchDetails] = useState<any>(null);  // State to store saved branch details
 
   const branches = {
     Delivery: [
-      { id: '1', name: 'Juicy Chuck - Gulberg', address: '6C/3, opposite Shoppe, Gulberg III, Lahore' },
-      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore' },
+      { id: '1', name: 'Juicy Chuck - Gulberg', address: '6C/3, opposite Shoppe, Gulberg III, Lahore', phone : "0320-6969696" },
+      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore', phone : "0320-1472839"},
     ],
     Pickup: [
-      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore' },
+      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore', phone : "0320-1472839"},
     ],
     Curbside: [
-      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore' },
+      { id: '2', name: 'Juicy Chuck - Lake City & DHA Rahbar', address: 'Defence Rd, opposite DHA Rahbar, Block P 1, Valencia, Lahore', phone : "0320-1472839"},
     ],
   };
 
@@ -30,9 +30,15 @@ const App = () => {
     if (selectedBranch) {
       const selectedBranchData = branches[selectedOption].find(branch => branch.id === selectedBranch);
       if (selectedBranchData) {
-        const savedData = { ...selectedBranchData, type: selectedOption };
-        setSavedBranchDetails(savedData); 
-        console.log('Saved Branch Details:', savedData); 
+        router.replace({
+          pathname: './mainmenu',
+          params: {
+            branchName: selectedBranchData.name,
+            branchAddress : selectedBranchData.address,
+            branchPhoneNo : selectedBranchData.phone,
+            orderType: selectedOption,
+          },
+        });
       }
     }
   };
@@ -66,20 +72,14 @@ const App = () => {
         {['Delivery', 'Pickup', 'Curbside'].map(option => (
           <TouchableOpacity
             key={option}
-            style={[
-              styles.toggleButton,
-              selectedOption === option && styles.activeButton,
-            ]}
+            style={[styles.toggleButton, selectedOption === option && styles.activeButton]}
             onPress={() => {
               setSelectedOption(option as 'Delivery' | 'Pickup' | 'Curbside');
               setSelectedBranch(null); // Reset selected branch when switching options
             }}
           >
             <Text
-              style={[
-                styles.toggleButtonText,
-                selectedOption === option && styles.activeButtonText,
-              ]}
+              style={[styles.toggleButtonText, selectedOption === option && styles.activeButtonText]}
             >
               {option}
             </Text>
@@ -101,16 +101,6 @@ const App = () => {
       <TouchableOpacity style={styles.doneButton} onPress={handleDone}>
         <Text style={styles.doneButtonText}>Done</Text>
       </TouchableOpacity>
-
-      {/* Debug: Show selected branch details */}
-      {savedBranchDetails && (
-        <View style={styles.debugContainer}>
-          <Text style={styles.debugText}>Saved Branch:</Text>
-          <Text>Name: {savedBranchDetails?.name}</Text>
-          <Text>Address: {savedBranchDetails?.address}</Text>
-          <Text>Type: {savedBranchDetails?.type}</Text>
-        </View>
-      )}
     </View>
   );
 };
@@ -130,8 +120,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     backgroundColor: '#ddd',
-    borderColor : 'orange',
-    borderWidth : 5
+    borderColor: 'orange',
+    borderWidth: 5,
   },
   title: {
     fontSize: 20,
@@ -212,18 +202,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  debugContainer: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#f4f4f4',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  debugText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
 });
 
-export default App;
+export default Branches;
