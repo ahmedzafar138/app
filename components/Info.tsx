@@ -11,7 +11,7 @@ const Info = (props:InfoProps) => {
   return (
     <View>
       <View style={styles.infoContainer}>
-        <Text style={styles.branch}>{props.branchName}</Text>
+        <Text style={styles.branch}>Juicy Chuck - {props.branchName}</Text>
         <View style={styles.info}>
           <Text style={{ color: "white", margin: 4 }}>{props.branchAddress}</Text>
           <Text style={{ color: "white", margin: 4 }}>📞  {props.branchPhoneNo}</Text>

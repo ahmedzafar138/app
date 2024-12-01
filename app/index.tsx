@@ -20,7 +20,7 @@ const LoadingScreen = () => {
       <View style={styles.logo}>
         <Image
           style={{ height: 200, width: 200, margin: 20 }}
-          source={require("./img/logo.jpg")}
+          source={require("../assets/img/logo.jpg")}
         />
         <View style={styles.barContainer}>
           <Animated.View

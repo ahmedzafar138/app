@@ -1,5 +1,7 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
-import React from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { router } from 'expo-router';
+import AddToCart from './addToCart';
 
 // Define the Food type
 type Food = {
@@ -8,26 +10,28 @@ type Food = {
   price: number;
 };
 
-// Define the props for the Foodcard component
 type FoodcardProps = {
-  foods: Food[]; // foods should be an array of Food type objects
+  foods: Food[];
 };
 
+const { width } = Dimensions.get("window");
+
 const Foodcard = ({ foods }: FoodcardProps) => {
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <View>
       <FlatList
-        data={foods} // Pass the foods array here
+        data={foods}
         numColumns={2}
         renderItem={({ item }) => (
           <View style={styles.foodItems}>
-            <TouchableOpacity onPress={() => console.log("Meal added")}>
+            <TouchableOpacity onPress={() => setIsVisible(true) }>
               <View style={styles.foodCard}>
                 <View style={styles.foodImage}>
                   <Image
                     resizeMode="cover"
                     style={styles.image}
-                    source={require("../img/meal1.jpg")} // Image placeholder
+                    source={require("../assets/img/meal1.jpg")} // Image placeholder
                   />
                 </View>
                 <View style={styles.foodNameView}>
@@ -38,6 +42,9 @@ const Foodcard = ({ foods }: FoodcardProps) => {
                 </View>
               </View>
             </TouchableOpacity>
+            {
+              isVisible ? <AddToCart></AddToCart> : null
+            }
           </View>
         )}
       />
@@ -50,8 +57,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   foodCard: {
-    height: 200,
-    width: 150,
+    height: width * 0.5,
+    width : width * 0.38,
     borderRadius: 20,
     margin: 15,
     backgroundColor: "white",

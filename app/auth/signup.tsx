@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
   View,
@@ -8,7 +9,7 @@ import {
   Image,
 } from "react-native";
 
-const Signup = ({ navigation }: { navigation: any }) => {
+const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +71,7 @@ const Signup = ({ navigation }: { navigation: any }) => {
     <View style={styles.container}>
       {/* Round Image */}
       <Image
-        source={require("../img/logo.jpg")}
+        source={require("../../assets/img/logo.jpg")}
         style={styles.profileImage}
       />
 
@@ -121,7 +122,7 @@ const Signup = ({ navigation }: { navigation: any }) => {
       </TouchableOpacity>
 
       {/* Back to Login Link */}
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+      <TouchableOpacity onPress={() => router.back()}>
         <Text style={styles.linkText}>Already have an account? Login</Text>
       </TouchableOpacity>
     </View>

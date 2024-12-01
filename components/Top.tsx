@@ -11,20 +11,20 @@ const Topbar = (props:branch) => {
   return (
     <View>
       <Pressable
-      onPress={() => router.replace('./branches')}>
+      onPress={() => router.replace('../branches')}>
       <View style={styles.topBar}>
         <View style={styles.topBarIn}>
           <View style={styles.topBarParts}>
-            <Text>Outlet</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>{props.branchName}</Text>
+            <Text style = {styles.text}>Outlet</Text>
+            <Text style={{ fontWeight: '900', color: "red"}}>{props.branchName}</Text>
           </View>
           <View style={styles.topBarParts}>
-            <Text>Order For</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>{props.orderType}</Text>
+            <Text style = {styles.text}>Order For</Text>
+            <Text style={{ fontWeight: "900", color: "red" }}>{props.orderType}</Text>
           </View>
           <View style={[styles.topBarParts, { borderRightColor: "white" }]}>
-            <Text>Serving Time</Text>
-            <Text style={{ fontWeight: "bold", color: "red" }}>Open</Text>
+            <Text style = {styles.text}>Serving Time</Text>
+            <Text style={{ fontWeight: "900", color: "red" }}>Open</Text>
           </View>
         </View>
       </View>
@@ -35,8 +35,11 @@ const Topbar = (props:branch) => {
 
 const styles = StyleSheet.create({
   topBar: {
-    height: 60,
+    height: 80,
     padding: 10,
+  },
+  text : {
+    fontWeight : '700'
   },
   topBarIn: {
     flex: 1,
