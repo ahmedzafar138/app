@@ -1,6 +1,5 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, Dimensions } from 'react-native';
 import React, { useState } from 'react';
-import { router } from 'expo-router';
 import AddToCart from './addToCart';
 
 // Define the Food type

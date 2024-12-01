@@ -11,6 +11,8 @@ import React, { useState } from "react";
 
 const { height } = Dimensions.get("window");
 
+const { width } = Dimensions.get("window");
+
 const AddToCart = () => {
   const price = 900;
   const [totalPrice, setTotalPrice] = useState(price);
@@ -64,7 +66,7 @@ const AddToCart = () => {
                         quantity > 1 ? setTotalPrice(totalPrice - price) : null;
                       }}
                     >
-                      -
+                    <Text style = {styles.incrementButtonText}>-</Text>
                     </TouchableOpacity>
                     <Text style={styles.quantityText}>{quantity}</Text>
                     <TouchableOpacity
@@ -74,7 +76,7 @@ const AddToCart = () => {
                         setTotalPrice(totalPrice + price);
                       }}
                     >
-                      +
+                      <Text style = {styles.incrementButtonText}>+</Text>
                     </TouchableOpacity>
                   </View>
 
@@ -138,8 +140,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   ImageView: {
-    height: 150,
-    width: 150,
+    height: width * 0.38,
+    width : width * 0.3,
   },
   Image: {
     width: '100%',
@@ -180,6 +182,7 @@ const styles = StyleSheet.create({
   rsText: {
     fontWeight: "900",
     fontSize: 28,
+    marginTop : 5
   },
   totalPrice: {
     padding: 10,
@@ -200,12 +203,13 @@ const styles = StyleSheet.create({
   },
   incrementButton: {
     backgroundColor: "red",
-    padding: 10,
     height: 30,
     width: 30,
     borderRadius: 15,
     justifyContent: "center",
     alignItems: "center",
+  },
+  incrementButtonText : {
     fontSize: 25,
     fontWeight: "800",
     color: "#fff",

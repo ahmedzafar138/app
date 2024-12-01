@@ -39,34 +39,6 @@ const Foods = {
     { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
     { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
   ],
-  Pizzas: [
-    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
-    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-  ],
-  Macaroni: [
-    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
-    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-  ],
-  Drinks: [
-    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
-    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-  ],
-  Pastas: [
-    { name: "Deal 1", detail: "Burger, small fries, Chicken piece, 330ml Drink", price: 999 },
-    { name: "Deal 2", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 3", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 4", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-    { name: "Deal 5", detail: "Burger, Small fries, Chicken Piece, 330ml Drink", price: 1999 },
-  ],
 };
 
 const App = () => {
